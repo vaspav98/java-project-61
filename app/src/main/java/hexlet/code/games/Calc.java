@@ -1,11 +1,11 @@
 package hexlet.code.games;
 import hexlet.code.Engine;
-
 import java.util.Scanner;
 
 public class Calc {
     public static String rightAnswer = "";
     public static String answer = "";
+
     public static void game() {
         if (Engine.round == 1) {
             System.out.println("What is the result of the expression?");

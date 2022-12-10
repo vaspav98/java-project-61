@@ -1,11 +1,35 @@
 package hexlet.code;
-
 import hexlet.code.games.Calc;
 import hexlet.code.games.Even;
+import hexlet.code.games.GCD;
+
 import java.util.Scanner;
 
 public class Engine {
     public static int round = 1;
+
+    public static String getAnswer(int num) {
+        switch (num) {
+            case 2:
+                return Even.answer;
+            case 3:
+                return Calc.answer;
+            default:
+                return GCD.answer;
+        }
+    }
+
+    public static String getRightAnswer(int num) {
+        switch (num) {
+            case 2:
+                return Even.rightAnswer;
+            case 3:
+                return Calc.rightAnswer;
+            default:
+                return GCD.rightAnswer;
+        }
+    }
+
     public static void launchGame(int num) {
         System.out.println("");
         System.out.println("Welcome to the Brain Games!");
@@ -16,26 +40,24 @@ public class Engine {
         final var numberOfAttempts = 3;
 
         while (round <= numberOfAttempts) {
-            if (num == 2) {
-                Even.game();
-                if (Even.answer.equals(Even.rightAnswer)) {
-                    System.out.println("Correct!");
-                } else {
-                    System.out.println("'" + Even.answer + "' is wrong answer ;(. "
-                            + "Correct answer was '" + Even.rightAnswer + "'.");
-                    System.out.println("Let's try again, " + userName);
+            switch (num) {
+                case 2:
+                    Even.game();
                     break;
-                }
-            } else if (num == 3) {
-                Calc.game();
-                if (Calc.answer.equals(Calc.rightAnswer)) {
-                    System.out.println("Correct!");
-                } else {
-                    System.out.println("'" + Calc.answer + "' is wrong answer ;(. "
-                            + "Correct answer was '" + Calc.rightAnswer + "'.");
-                    System.out.println("Let's try again, "  + userName);
+                case 3:
+                    Calc.game();
                     break;
-                }
+                default:
+                    GCD.game();
+            }
+
+            if (getAnswer(num).equals(getRightAnswer(num))) {
+                System.out.println("Correct!");
+            } else {
+                System.out.println("'" + getAnswer(num) + "' is wrong answer ;(. "
+                        + "Correct answer was '" + getRightAnswer(num) + "'.");
+                System.out.println("Let's try again, " + userName);
+                break;
             }
             if (round == 3) {
                 System.out.println("Congratulations, " + userName + "!");

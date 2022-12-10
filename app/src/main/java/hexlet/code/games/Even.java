@@ -1,11 +1,11 @@
 package hexlet.code.games;
 import hexlet.code.Engine;
-
 import java.util.Scanner;
 
 public class Even {
     public static String rightAnswer = "";
     public static String answer = "";
+
     public static void game() {
         if (Engine.round == 1) {
             System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
