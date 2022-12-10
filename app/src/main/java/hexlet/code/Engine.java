@@ -1,9 +1,5 @@
 package hexlet.code;
-import hexlet.code.games.Calc;
-import hexlet.code.games.Even;
-import hexlet.code.games.GCD;
-import hexlet.code.games.Progression;
-
+import hexlet.code.games.*;
 import java.util.Scanner;
 
 public class Engine {
@@ -17,8 +13,10 @@ public class Engine {
                 return Calc.answer;
             case 4:
                 return GCD.answer;
-            default:
+            case 5:
                 return Progression.answer;
+            default:
+                return Prime.answer;
         }
     }
 
@@ -30,8 +28,10 @@ public class Engine {
                 return Calc.rightAnswer;
             case 4:
                 return GCD.rightAnswer;
-            default:
+            case 5:
                 return Progression.rightAnswer;
+            default:
+                return Prime.rightAnswer;
         }
     }
 
@@ -55,8 +55,11 @@ public class Engine {
                 case 4:
                     GCD.game();
                     break;
-                default:
+                case 5:
                     Progression.game();
+                    break;
+                default:
+                    Prime.game();
             }
 
             if (getAnswer(num).equals(getRightAnswer(num))) {
