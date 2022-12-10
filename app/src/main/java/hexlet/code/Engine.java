@@ -67,7 +67,7 @@ public class Engine {
             } else {
                 System.out.println("'" + getAnswer(num) + "' is wrong answer ;(. "
                         + "Correct answer was '" + getRightAnswer(num) + "'.");
-                System.out.println("Let's try again, " + userName);
+                System.out.println("Let's try again, " + userName + "!");
                 break;
             }
             if (round == 3) {
@@ -77,4 +77,3 @@ public class Engine {
         }
     }
 }
-
