@@ -12,11 +12,13 @@ public class Calc {
         }
         char[] array = {'+', '-', '*'};
         char operator = array[(int) (Math.random() * array.length)];
-        var a = (int) (Math.random() * 100);
-        var b = (int) (Math.random() * 100);
+        final var scatter = 100;
+        final var scatterForMult = 20;
+        var a = (int) (Math.random() * scatter);
+        var b = (int) (Math.random() * scatter);
         if (operator == '*') {
-            a = (int) (Math.random() * 20);
-            b = (int) (Math.random() * 20);
+            a = (int) (Math.random() * scatterForMult);
+            b = (int) (Math.random() * scatterForMult);
         }
         System.out.println("Question: " + a + " " + operator + " " + b);
         System.out.print("Your answer: ");

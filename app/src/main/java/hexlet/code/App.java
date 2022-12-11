@@ -14,24 +14,12 @@ public class App {
         System.out.print("Your choice: ");
         Scanner scanner = new Scanner(System.in);
         var answer = scanner.next();
-        switch (answer) {
-            case "1":
-                Cli.greeting();
-                break;
-            case "2":
-                Engine.launchGame(2);
-                break;
-            case "3":
-                Engine.launchGame(3);
-                break;
-            case "4":
-                Engine.launchGame(4);
-                break;
-            case "5":
-                Engine.launchGame(5);
-                break;
-            case "6":
-                Engine.launchGame(6);
+        if (answer.equals("1")) {
+            Cli.greeting();
+        }
+        if (answer.equals("2") || answer.equals("3") || answer.equals("4") || answer.equals("5")
+                || answer.equals("6")) {
+            Engine.launchGame(answer);
         }
     }
 }

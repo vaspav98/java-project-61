@@ -10,8 +10,9 @@ public class GCD {
         if (Engine.round == 1) {
             System.out.println("Find the greatest common divisor of given numbers.");
         }
-        var a = (int) (Math.random() * 101);
-        var b = (int) (Math.random() * 101);
+        final var scatter = 101;
+        var a = (int) (Math.random() * scatter);
+        var b = (int) (Math.random() * scatter);
         System.out.println("Question: " + a + " " + b);
         System.out.print("Your answer: ");
         Scanner scanner = new Scanner(System.in);

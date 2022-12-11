@@ -11,10 +11,11 @@ public class Progression {
             System.out.println("What number is missing in the progression?");
         }
         final var progressionLength = 9;
+        final var scatter = 100;
         var progression = "";
-        var num = (int) (Math.random() * 100);
-        var diff = (int) (Math.random() * 9 + 1);
-        var skip = (int) (Math.random() * 9 + 1);
+        var num = (int) (Math.random() * scatter);
+        var diff = (int) (Math.random() * progressionLength + 1);
+        var skip = (int) (Math.random() * progressionLength + 1);
         for (var i = 1; i <= progressionLength; i++) {
             if (skip == i) {
                 progression += ".. ";

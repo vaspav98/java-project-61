@@ -10,7 +10,8 @@ public class Even {
         if (Engine.round == 1) {
             System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
         }
-        var number = (int) (Math.random() * 100);
+        final var scatter = 100;
+        var number = (int) (Math.random() * scatter);
         System.out.println("Question: " + number);
         System.out.print("Your answer: ");
         Scanner scanner = new Scanner(System.in);

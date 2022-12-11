@@ -10,7 +10,8 @@ public class Prime {
         if (Engine.round == 1) {
             System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
         }
-        var num = (int) (Math.random() * 100 + 1);
+        final var scatter = 100;
+        var num = (int) (Math.random() * scatter + 1);
         System.out.println("Question: " + num);
         System.out.print("Your answer: ");
         Scanner scanner = new Scanner(System.in);
