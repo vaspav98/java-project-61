@@ -70,7 +70,7 @@ public class Engine {
                 System.out.println("Let's try again, " + userName + "!");
                 break;
             }
-            if (round == 3) {
+            if (round == numberOfAttempts) {
                 System.out.println("Congratulations, " + userName + "!");
             }
             round++;
