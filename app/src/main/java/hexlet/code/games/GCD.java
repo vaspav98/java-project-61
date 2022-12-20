@@ -1,28 +1,37 @@
 package hexlet.code.games;
 import hexlet.code.Engine;
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class GCD {
-    public static String rightAnswer = "";
-    public static String answer = "";
-
     public static void game() {
-        if (Engine.round == 1) {
-            System.out.println("Find the greatest common divisor of given numbers.");
+        String condition = "Find the greatest common divisor of given numbers.";
+        Engine.start(condition);
+        final var min = 1;
+        final var max = 100;
+        for (var i = 1; i <= Engine.ROUNDS_COUNT; i++) {
+            var a = Utils.generateNumber(min, max);
+            var b = Utils.generateNumber(min, max);
+            var question = a + " " + b;
+            var rightAnswer = Integer.toString(calculationGCD(a, b));
+            var check = Engine.continuation(question, rightAnswer);
+            if (!check) {
+                break;
+            }
+            if (i == Engine.ROUNDS_COUNT) {
+                Engine.end();
+            }
         }
-        final var scatter = 101;
-        var a = (int) (Math.random() * scatter);
-        var b = (int) (Math.random() * scatter);
-        System.out.println("Question: " + a + " " + b);
-        System.out.print("Your answer: ");
-        Scanner scanner = new Scanner(System.in);
-        answer = scanner.next();
+    }
+
+    public static int calculationGCD(int a, int b) {
         var lesserNum = Math.min(a, b);
+        var result = 0;
         for (var i = lesserNum; i >= 1; i--) {
             if (a % i == 0 && b % i == 0) {
-                rightAnswer = Integer.toString(i);
+                result  = i;
                 break;
             }
         }
+        return result;
     }
 }

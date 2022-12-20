@@ -1,35 +1,39 @@
 package hexlet.code.games;
 import hexlet.code.Engine;
-import java.util.Scanner;
+import hexlet.code.Utils;
 
 public class Calc {
-    public static String rightAnswer = "";
-    public static String answer = "";
-
     public static void game() {
-        if (Engine.round == 1) {
-            System.out.println("What is the result of the expression?");
-        }
+        String condition = "What is the result of the expression?";
+        Engine.start(condition);
+        final var min = 0;
+        final var max = 100;
+        final var maxForMult = 20;
         char[] array = {'+', '-', '*'};
-        char operator = array[(int) (Math.random() * array.length)];
-        final var scatter = 100;
-        final var scatterForMult = 20;
-        var a = (int) (Math.random() * scatter);
-        var b = (int) (Math.random() * scatter);
-        if (operator == '*') {
-            a = (int) (Math.random() * scatterForMult);
-            b = (int) (Math.random() * scatterForMult);
-        }
-        System.out.println("Question: " + a + " " + operator + " " + b);
-        System.out.print("Your answer: ");
-        Scanner scanner = new Scanner(System.in);
-        answer = scanner.next();
-        if (operator == '+') {
-            rightAnswer = Integer.toString(a + b);
-        } else if (operator == '-') {
-            rightAnswer = Integer.toString(a - b);
-        } else {
-            rightAnswer = Integer.toString(a * b);
+        for (var i = 1; i <= Engine.ROUNDS_COUNT; i++) {
+            char operator = array[(int) (Math.random() * array.length)];
+            var a = Utils.generateNumber(min, max);
+            var b = Utils.generateNumber(min, max);
+            if (operator == '*') {
+                a = Utils.generateNumber(min, maxForMult);
+                b = Utils.generateNumber(min, maxForMult);
+            }
+            var question = a + " " + operator + " " + b;
+            var rightAnswer = "";
+            if (operator == '+') {
+                rightAnswer = Integer.toString(a + b);
+            } else if (operator == '-') {
+                rightAnswer = Integer.toString(a - b);
+            } else {
+                rightAnswer = Integer.toString(a * b);
+            }
+            var check = Engine.continuation(question, rightAnswer);
+            if (!check) {
+                break;
+            }
+            if (i == Engine.ROUNDS_COUNT) {
+                Engine.end();
+            }
         }
     }
 }
