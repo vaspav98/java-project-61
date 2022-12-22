@@ -38,7 +38,10 @@ public class App {
                 break;
             case "6":
                 Prime.game();
+            case "0":
+                break;
             default:
+                throw new RuntimeException("Unknown input: " + answer);
         }
     }
 }

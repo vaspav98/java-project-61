@@ -3,40 +3,33 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class Prime {
+    private static final int MIN = -1;
+    private static final int MAX = 100;
+    private static final String CONDITION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void game() {
-        String condition = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-        Engine.start(condition);
-        final var min = -1;
-        final var max = 100;
-        for (var i = 1; i <= Engine.ROUNDS_COUNT; i++) {
-            var number = Utils.generateNumber(min, max);
-            var question = Integer.toString(number);
-            var rightAnswer = isPrime(number);
-            var check = Engine.continuation(question, rightAnswer);
-            if (!check) {
-                break;
-            }
-            if (i == Engine.ROUNDS_COUNT) {
-                Engine.end();
-            }
+        String[] questions = new String[Engine.ROUNDS_COUNT];
+        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
+            var number = Utils.generateNumber(MIN, MAX);
+            questions[i] = Integer.toString(number);
+            rightAnswers[i] = isPrime(number) ? "yes" : "no";
         }
+        Engine.launch(CONDITION, questions, rightAnswers);
     }
 
-    public static String isPrime(int num) {
-        var result = "";
+    public static boolean isPrime(int num) {
         if (num <= 1) {
-            result = "no";
+            return false;
         } else if (num == 2) {
-            result = "yes";
-        }
-        for (var divider = num - 1; divider > 1; divider--) {
-            if (num % divider == 0) {
-                result = "no";
-                break;
+            return true;
+        } else {
+            for (var divider = num - 1; divider > 1; divider--) {
+                if (num % divider == 0) {
+                    return false;
+                }
             }
-            result = "yes";
+            return true;
         }
-        return result;
     }
 }

@@ -3,24 +3,20 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class GCD {
+    private static final int MIN = 1;
+    private static final int MAX = 100;
+    private static final String CONDITION = "Find the greatest common divisor of given numbers.";
+
     public static void game() {
-        String condition = "Find the greatest common divisor of given numbers.";
-        Engine.start(condition);
-        final var min = 1;
-        final var max = 100;
-        for (var i = 1; i <= Engine.ROUNDS_COUNT; i++) {
-            var a = Utils.generateNumber(min, max);
-            var b = Utils.generateNumber(min, max);
-            var question = a + " " + b;
-            var rightAnswer = Integer.toString(calculationGCD(a, b));
-            var check = Engine.continuation(question, rightAnswer);
-            if (!check) {
-                break;
-            }
-            if (i == Engine.ROUNDS_COUNT) {
-                Engine.end();
-            }
+        String[] questions = new String[Engine.ROUNDS_COUNT];
+        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
+            var a = Utils.generateNumber(MIN, MAX);
+            var b = Utils.generateNumber(MIN, MAX);
+            questions[i] = a + " " + b;
+            rightAnswers[i] = Integer.toString(calculationGCD(a, b));
         }
+        Engine.launch(CONDITION, questions, rightAnswers);
     }
 
     public static int calculationGCD(int a, int b) {

@@ -3,22 +3,22 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class Even {
+    private static final int MIN = 1;
+    private static final int MAX = 100;
+    private static final String CONDITION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+
     public static void game() {
-        String condition = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-        Engine.start(condition);
-        final var min = 1;
-        final var max = 100;
-        for (var i = 1; i <= Engine.ROUNDS_COUNT; i++) {
-            var number = Utils.generateNumber(min, max);
-            var question = Integer.toString(number);
-            var rightAnswer = number % 2 == 0 ? "yes" : "no";
-            boolean check = Engine.continuation(question, rightAnswer);
-            if (!check) {
-                break;
-            }
-            if (i == Engine.ROUNDS_COUNT) {
-                Engine.end();
-            }
+        String[] questions = new String[Engine.ROUNDS_COUNT];
+        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
+            var number = Utils.generateNumber(MIN, MAX);
+            questions[i] = Integer.toString(number);
+            rightAnswers[i] = isEven(number) ? "yes" : "no";
         }
+        Engine.launch(CONDITION, questions, rightAnswers);
+    }
+
+    public static boolean isEven(int number) {
+        return number % 2 == 0;
     }
 }

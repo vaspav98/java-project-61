@@ -3,37 +3,39 @@ import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public class Calc {
+    private static final int MIN = 0;
+    private static final int MAX = 100;
+    private static final int MAX_FOR_MULT = 20;
+    private static final char[] OPERATORS = {'+', '-', '*'};
+    private static final String CONDITION = "What is the result of the expression?";
+
     public static void game() {
-        String condition = "What is the result of the expression?";
-        Engine.start(condition);
-        final var min = 0;
-        final var max = 100;
-        final var maxForMult = 20;
-        char[] array = {'+', '-', '*'};
-        for (var i = 1; i <= Engine.ROUNDS_COUNT; i++) {
-            char operator = array[(int) (Math.random() * array.length)];
-            var a = Utils.generateNumber(min, max);
-            var b = Utils.generateNumber(min, max);
+        String[] questions = new String[Engine.ROUNDS_COUNT];
+        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
+            char operator = OPERATORS[Utils.generateNumber(0, OPERATORS.length - 1)];
+            var a = Utils.generateNumber(MIN, MAX);
+            var b = Utils.generateNumber(MIN, MAX);
             if (operator == '*') {
-                a = Utils.generateNumber(min, maxForMult);
-                b = Utils.generateNumber(min, maxForMult);
+                a = Utils.generateNumber(MIN, MAX_FOR_MULT);
+                b = Utils.generateNumber(MIN, MAX_FOR_MULT);
             }
-            var question = a + " " + operator + " " + b;
-            var rightAnswer = "";
-            if (operator == '+') {
-                rightAnswer = Integer.toString(a + b);
-            } else if (operator == '-') {
-                rightAnswer = Integer.toString(a - b);
-            } else {
-                rightAnswer = Integer.toString(a * b);
-            }
-            var check = Engine.continuation(question, rightAnswer);
-            if (!check) {
-                break;
-            }
-            if (i == Engine.ROUNDS_COUNT) {
-                Engine.end();
-            }
+            questions[i] = a + " " + operator + " " + b;
+            rightAnswers[i] = Integer.toString(calculate(operator, a, b));
+        }
+        Engine.launch(CONDITION, questions, rightAnswers);
+    }
+
+    public static int calculate(char operator, int a, int b) {
+        switch (operator) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '*':
+                return a * b;
+            default:
+                throw new RuntimeException("Unknown input: " + operator);
         }
     }
 }
