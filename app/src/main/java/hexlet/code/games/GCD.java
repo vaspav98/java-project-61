@@ -8,18 +8,18 @@ public class GCD {
     private static final String CONDITION = "Find the greatest common divisor of given numbers.";
 
     public static void game() {
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData = new String[Engine.ROUNDS_COUNT][];
         for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
             var a = Utils.generateNumber(MIN, MAX);
             var b = Utils.generateNumber(MIN, MAX);
-            questions[i] = a + " " + b;
-            rightAnswers[i] = Integer.toString(calculationGCD(a, b));
+            var question = a + " " + b;
+            var rightAnswer = Integer.toString(gcd(a, b));
+            gameData[i] = new String[] {question, rightAnswer};
         }
-        Engine.launch(CONDITION, questions, rightAnswers);
+        Engine.launch(CONDITION, gameData);
     }
 
-    public static int calculationGCD(int a, int b) {
+    public static int gcd(int a, int b) {
         var lesserNum = Math.min(a, b);
         var result = 0;
         for (var i = lesserNum; i >= 1; i--) {

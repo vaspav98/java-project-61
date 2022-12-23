@@ -10,18 +10,18 @@ public class Progression {
     private static final String CONDITION = "What number is missing in the progression?";
 
     public static void game() {
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData = new String[Engine.ROUNDS_COUNT][];
         for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
             var firstNum = Utils.generateNumber(MIN, MAX);
             var step = Utils.generateNumber(1, MAX_FOR_STEP);
             var hiddenIndex = Utils.generateNumber(0, PROGRESSION_LENGTH - 1);
             String[] progression = createProgression(firstNum, step, PROGRESSION_LENGTH);
-            rightAnswers[i] = progression[hiddenIndex];
+            var rightAnswer = progression[hiddenIndex];
             progression[hiddenIndex] = "..";
-            questions[i] = String.join(" ", progression);
+            var question = String.join(" ", progression);
+            gameData[i] = new String[] {question, rightAnswer};
         }
-        Engine.launch(CONDITION, questions, rightAnswers);
+        Engine.launch(CONDITION, gameData);
     }
 
     public static String[] createProgression(int number, int step, int progressionLength) {

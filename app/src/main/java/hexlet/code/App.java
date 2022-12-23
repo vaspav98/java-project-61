@@ -4,7 +4,6 @@ import hexlet.code.games.Even;
 import hexlet.code.games.GCD;
 import hexlet.code.games.Prime;
 import hexlet.code.games.Progression;
-
 import java.util.Scanner;
 
 public class App {
@@ -38,6 +37,7 @@ public class App {
                 break;
             case "6":
                 Prime.game();
+                break;
             case "0":
                 break;
             default:

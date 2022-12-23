@@ -8,14 +8,14 @@ public class Prime {
     private static final String CONDITION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void game() {
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] rightAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData = new String[Engine.ROUNDS_COUNT][];
         for (var i = 0; i < Engine.ROUNDS_COUNT; i++) {
             var number = Utils.generateNumber(MIN, MAX);
-            questions[i] = Integer.toString(number);
-            rightAnswers[i] = isPrime(number) ? "yes" : "no";
+            var question = Integer.toString(number);
+            var rightAnswer = isPrime(number) ? "yes" : "no";
+            gameData[i] = new String[] {question, rightAnswer};
         }
-        Engine.launch(CONDITION, questions, rightAnswers);
+        Engine.launch(CONDITION, gameData);
     }
 
     public static boolean isPrime(int num) {
