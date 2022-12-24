@@ -13,9 +13,9 @@ public class Engine {
         System.out.println("Hello, " + userName + "!");
         System.out.println(condition);
 
-        for (var i = 0; i < ROUNDS_COUNT; i++) {
-            var question = gameData[i][0];
-            var rightAnswer = gameData[i][1];
+        for (var currentGameData: gameData) {
+            var question = currentGameData[0];
+            var rightAnswer = currentGameData[1];
             System.out.println("Question: " + question);
             System.out.print("Your answer: ");
             var answer = scanner.next();
