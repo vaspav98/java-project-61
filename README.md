@@ -6,8 +6,8 @@
 This is the first project of a professional Java developer on Hexlet. Consists of five console games aimed at pumping up the brain.
 
 ## Requirements
-* JDK 17
-* Gradle 7.4
+* JDK 20
+* Gradle 8.3
 
 ## Usage
 ```
